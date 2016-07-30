@@ -1,0 +1,1 @@
+/home/vagrant/.emacs.d/custom-themes-pkgs/spacemacs-theme/spacemacs-common.el
