@@ -1,4 +1,4 @@
-
+;; Andrew J Lenards
 
 (require 'package) ;; You might already have this line
 (add-to-list 'package-archives
@@ -21,16 +21,6 @@
 
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/custom-themes")
-;;(add-to-list 'load-path "~/.emacs.d/custom-themes-pkgs/spacemacs-theme/")
-
-;; 
-;; (require 'smart-mode-line)
-
-;; (setq powerline-arrow-shape 'curve)
-;; (setq powerline-default-separator-dir '(right . left))
-;; ;; These two lines you really need.
-;; ;;(setq sml/theme 'respectful)
-;; (sml/setup)
 
 (require 'helm-config)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
