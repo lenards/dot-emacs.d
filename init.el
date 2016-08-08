@@ -11,6 +11,9 @@
 
 (menu-bar-mode -1)
 
+(require 'editorconfig)
+(editorconfig-mode 1)
+
 (eval-after-load "js2-highlight-vars-autoloads"
   '(add-hook 'js2-mode-hook (lambda () (js2-highlight-vars-mode))))
 
@@ -19,12 +22,53 @@
 (add-hook 'python-mode-hook 'git-gutter-mode)
 (add-hook 'js2-mode-hook 'git-gutter-mode)
 
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/custom-themes")
+(require 'projectile)
+(projectile-global-mode)
+(add-hook 'js2-mode-hook 'projectile-mode)
 
 (require 'helm-config)
 (global-set-key (kbd "C-x b") 'helm-buffers-list)
 (global-set-key (kbd "C-x m") 'helm-M-x)
+
+(require 'helm-projectile)
+(helm-projectile-on)
+
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
+;; melpa installed were failing 8/5/2016:
+;; installed via homebrew-
+;;Emacs Lisp files have been installed to:
+;;  /usr/local/share/emacs/site-lisp/yaml-mode
+
+(require 'web-mode)
+
+(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.j2\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.react.js\\'" . web-mode))
+
+(setq web-mode-content-types-alist
+      '(("json" . "\\.json\\'")
+	("jsx"  . "\\.js[x]?\\'")
+	("jsx"  . "\\.react.js\\'")))
+
+
+(defun my-web-mode-hook ()
+    "Hooks for Web mode."
+    (add-hook 'local-write-file-hooks
+	      (lambda ()
+		(delete-trailing-whitespace)
+		nil))
+    (set-face-attribute 'web-mode-html-tag-bracket-face
+			nil :foreground "Pink3")
+)
+
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
+
+;; Below were added when _enabled_
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/custom-themes")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
