@@ -88,6 +88,27 @@
 
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
+(require 'tern)
+(autoload 'tern-mode "tern.el" nil t)
+(add-hook 'js-mode-hook (lambda () (tern-mode t)))
+
+(eval-after-load 'tern
+  '(progn
+     (require 'tern-auto-complete)
+     (tern-ac-setup)))
+
+
+;;; Blog Surfin' for Fun & Project
+;;;
+;;; Excerpt from:
+;;; http://codewinds.com/blog/2015-04-02-emacs-flycheck-eslint-jsx.html
+;;;
+;;; https://github.com/purcell/exec-path-from-shell
+;;; only need exec-path-from-shell on OSX
+;;; this hopefully sets up path and other vars better
+;;;(when (memq window-system '(mac ns))
+;;;  (exec-path-from-shell-initialize))
+
 
 ;; Below were added when _enabled_
 
