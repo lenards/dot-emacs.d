@@ -1,13 +1,26 @@
-;; Andrew J Lenards
-
-(require 'package) ;; You might already have this line
+;;; package --- Summary
+;;;
+;;; Commentary:
+;;; I need to figure out how to get flycheck to chill out
+;;;
+;;;
+;;; -------------------------
+;;; .emacs.d/init.el 'lenards
+;;; -------------------------
+;;;
+;;; Code:
+;;;
+;;; Pulled from MELPA Getting Started
+;;; (:url "https://melpa.org/#/getting-started")
+;;;
+(require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/") t)
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
-(package-initialize) ;; You might already have this line
+(package-initialize)
 
 (menu-bar-mode -1)
 
@@ -21,6 +34,16 @@
 (global-git-gutter-mode +1)
 (add-hook 'python-mode-hook 'git-gutter-mode)
 (add-hook 'js2-mode-hook 'git-gutter-mode)
+
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+(setq-default flycheck-disabled-checkers
+	      (append flycheck-disabled-checkers
+		      '(javascript-jshint
+			emacs-lisp-checkdoc)))
+
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+;;(global-flycheck-mode)
 
 (require 'projectile)
 (projectile-global-mode)
@@ -78,9 +101,12 @@
  '(custom-safe-themes
    (quote
     ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(helm-selection ((t (:background "color-245" :distant-foreground "color-237")))))
+
+;;; init.el ends here
