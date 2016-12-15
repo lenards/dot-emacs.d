@@ -80,6 +80,7 @@
 
 (defun my-web-mode-hook ()
     "Hooks for Web mode."
+    (show-paren-mode 1)
     (add-hook 'local-write-file-hooks
 	      (lambda ()
 		(delete-trailing-whitespace)
