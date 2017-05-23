@@ -27,6 +27,9 @@
 (require 'editorconfig)
 (editorconfig-mode 1)
 
+(setq auto-save-default nil)
+(setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
+
 (eval-after-load "js2-highlight-vars-autoloads"
   '(add-hook 'js2-mode-hook (lambda () (js2-highlight-vars-mode))))
 
