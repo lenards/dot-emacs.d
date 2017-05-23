@@ -27,6 +27,11 @@
 (require 'editorconfig)
 (editorconfig-mode 1)
 
+(setq auto-save-default nil)
+(setq make-backup-files nil)
+;; if you allow backup-files, then provide a location:
+;; (setq backup-directory-alist '(("" . "~/.emacs.d/emacs-backup")))
+
 (eval-after-load "js2-highlight-vars-autoloads"
   '(add-hook 'js2-mode-hook (lambda () (js2-highlight-vars-mode))))
 
@@ -80,6 +85,7 @@
 
 (defun my-web-mode-hook ()
     "Hooks for Web mode."
+    (show-paren-mode 1)
     (add-hook 'local-write-file-hooks
 	      (lambda ()
 		(delete-trailing-whitespace)
@@ -123,7 +129,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default))))
+    ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
+ '(package-selected-packages
+   (quote
+    (feature-mode gherkin-mode markdown-mode yaml-mode web-mode tern-auto-complete smart-mode-line-powerline-theme json-mode js3-mode js2-highlight-vars helm-swoop helm-projectile helm-mode-manager helm-flycheck git-gutter exec-path-from-shell editorconfig))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
