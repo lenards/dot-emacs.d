@@ -14,12 +14,13 @@
 ;;; (:url "https://melpa.org/#/getting-started")
 ;;;
 (require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/") t)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (url (concat (if no-ssl "http" "https") "://melpa.org/packages/")))
+  (add-to-list 'package-archives (cons "melpa" url) t))
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
-
 (package-initialize)
 
 (menu-bar-mode -1)
@@ -96,6 +97,15 @@
 
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 
+(require 'emmet-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode)
+(add-hook 'html-mode-hook 'emmet-mode)
+(add-hook 'css-mode-hook  'emmet-mode)
+
+(require 'rainbow-mode)
+(add-to-list 'auto-mode-alist '("\\.css?\\'" . rainbow-mode))
+(add-to-list 'auto-mode-alist '("\\.scss?\\'" . rainbow-mode))
+
 (require 'tern)
 (autoload 'tern-mode "tern.el" nil t)
 (add-hook 'js-mode-hook (lambda () (tern-mode t)))
@@ -132,7 +142,7 @@
     ("c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "b04425cc726711a6c91e8ebc20cf5a3927160681941e06bc7900a5a5bfe1a77f" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" default)))
  '(package-selected-packages
    (quote
-    (feature-mode gherkin-mode markdown-mode yaml-mode web-mode tern-auto-complete smart-mode-line-powerline-theme json-mode js3-mode js2-highlight-vars helm-swoop helm-projectile helm-mode-manager helm-flycheck git-gutter exec-path-from-shell editorconfig))))
+    (emmet-mode feature-mode gherkin-mode markdown-mode yaml-mode web-mode tern-auto-complete smart-mode-line-powerline-theme json-mode js3-mode js2-highlight-vars helm-swoop helm-projectile helm-mode-manager helm-flycheck git-gutter exec-path-from-shell editorconfig))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
