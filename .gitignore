@@ -1,5 +1,6 @@
 /.cask
 *.elc
+*projectile-bookmarks.eld
 *~
 [#]*[#]
 /TAGS
