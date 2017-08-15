@@ -3,7 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil nil ("gherkin-mode.el") (22687 25797 0 0))
+;;;### (autoloads nil nil ("gherkin-mode.el") (22931 20438 0 0))
 
 ;;;***
 

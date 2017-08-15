@@ -1,9 +1,9 @@
 ;;; js3-mode-autoloads.el --- automatically extracted autoloads
 ;;
 ;;; Code:
-(add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
+(add-to-list 'load-path (directory-file-name (or (file-name-directory #$) (car load-path))))
 
-;;;### (autoloads nil "js3" "js3.el" (22467 33424 0 0))
+;;;### (autoloads nil "js3" "js3.el" (22931 20344 0 0))
 ;;; Generated autoloads from js3.el
  (add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))
 
@@ -16,7 +16,7 @@ Major mode for editing JavaScript code.
 
 ;;;***
 
-;;;### (autoloads nil "js3-mode" "js3-mode.el" (22467 33424 0 0))
+;;;### (autoloads nil "js3-mode" "js3-mode.el" (22931 20344 0 0))
 ;;; Generated autoloads from js3-mode.el
  (add-to-list 'auto-mode-alist '("\\.js$" . js3-mode))
 
@@ -29,8 +29,7 @@ Major mode for editing JavaScript code.
 
 ;;;***
 
-;;;### (autoloads nil nil ("js3-mode-pkg.el") (22467 33424 668885
-;;;;;;  0))
+;;;### (autoloads nil nil ("js3-mode-pkg.el") (22931 20344 0 0))
 
 ;;;***
 
